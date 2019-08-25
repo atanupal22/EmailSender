@@ -35,14 +35,18 @@ public class EmailSender {
     public void sendMail(String emailAddress, String message, String[][] friendsArray){
         Set<String> finalList = new HashSet<String>();
         
-        friendChain(emailAddress, emailAddress, finalList, friendsArray);
+        friendChain(emailAddress, finalList, friendsArray);
         
         finalList.forEach( email -> {
             sendMail(email, message);
         });
     }
     
-    public Set friendChain(String startingEmailAddress, String emailAddress, Set finalList, String[][] friendsArray){
+    public Set friendChain(String emailAddress, Set finalList, String[][] friendsArray){
+        return friendChain(emailAddress, emailAddress, finalList, friendsArray);
+    }
+    
+    private Set friendChain(String startingEmailAddress, String emailAddress, Set finalList, String[][] friendsArray){
         
         int indexOfEmail = findIndexOf(emailAddress, friendsArray);
         
