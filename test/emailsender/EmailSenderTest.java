@@ -32,18 +32,15 @@ public class EmailSenderTest {
     }
     
     String[][] friendsArray;
-    Set finalList;
     EmailSender instance;
     @Before
     public void setUp() {
         friendsArray = EmailSender.input;
-        finalList = new HashSet();
         instance = new EmailSender();
     }
     
     @After
     public void tearDown() {
-        finalList.clear();
     }
 
     /**
@@ -56,7 +53,7 @@ public class EmailSenderTest {
         System.out.println("friendChain with valid email address :: " + emailAddress);
         
         int expResult = 7;
-        Set result = instance.friendChain(emailAddress, finalList, friendsArray);
+        Set result = instance.friendChain(emailAddress, friendsArray);
         assertEquals(result.size(), expResult);
 
     }
@@ -71,7 +68,7 @@ public class EmailSenderTest {
         System.out.println("friendChain with invalid email address :: " + emailAddress);
 
         int expResult = 1;
-        Set result = instance.friendChain(emailAddress, finalList, friendsArray);
+        Set result = instance.friendChain(emailAddress, friendsArray);
         assertEquals(result.size(), expResult);
 
     }
